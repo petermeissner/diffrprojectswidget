@@ -6,6 +6,13 @@
 \usage{
 dp_visOutput(outputId, width = "100\%", height = "400px")
 }
+\arguments{
+\item{outputId}{I have no idea}
+
+\item{width}{width}
+
+\item{height}{height}
+}
 \description{
 dp_vis shiny output function
 }

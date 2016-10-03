@@ -24,8 +24,6 @@ Authors@R: c(
 Description: 'Htmlwidget' / D3.js visualization for 'diffrprojects' projects.
 Depends:
     R (>= 3.0.0),
-    stringb (>= 0.1.11),
-    rtext (>= 0.1.16)
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:

@@ -5,6 +5,7 @@
 #' @param height heigth of widget
 #'
 #' @export
+#'
 dp_vis <- function(links=list(source= 1:10, target=sin(1:10)), width = "100%", height = "400px") {
 
 
@@ -35,15 +36,32 @@ dp_vis <- function(links=list(source= 1:10, target=sin(1:10)), width = "100%", h
 
 
 #' dp_vis shiny output function
+#'
+#' @param outputId I have no idea
+#' @param width width
+#' @param height height
+#'
 #' @export
+#'
 dp_visOutput <- function(outputId, width = "100%", height = "400px") {
   htmlwidgets::shinyWidgetOutput(outputId, "dp_vis", width, height, package = "diffrprojectswidget")
 }
 
 
 #' dp_vis shiny render function
+#'
+#' @param expr expr
+#' @param env env
+#' @param quoted quoted
+#'
+#'
 #' @export
+#'
 renderDP_vis <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, diffrvisOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, dp_visOutput, env, quoted = TRUE)
 }
+
+
+
+

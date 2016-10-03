@@ -6,6 +6,13 @@
 \usage{
 renderDP_vis(expr, env = parent.frame(), quoted = FALSE)
 }
+\arguments{
+\item{expr}{expr}
+
+\item{env}{env}
+
+\item{quoted}{quoted}
+}
 \description{
 dp_vis shiny render function
 }
