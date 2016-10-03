@@ -1,0 +1,115 @@
+---
+output: github_document
+---
+
+
+
+
+```{r, include=FALSE}
+options("width"=101)
+tmp <- devtools:::read_dcf("DESCRIPTION")
+```
+
+```{r, results='asis', echo=FALSE}
+cat("#", tmp$Title)
+```
+
+
+**Status**
+
+
+[![Travis-CI Build Status](https://travis-ci.org/petermeissner/diffrprojectswidget.svg?branch=master)](https://travis-ci.org/petermeissner/diffrprojectswidget)
+[![codecov](https://codecov.io/gh/petermeissner/diffrprojectswidget/branch/master/graph/badge.svg)](https://codecov.io/gh/petermeissner/diffrprojectswidget/tree/master/R)
+[![CRAN version](http://www.r-pkg.org/badges/version/diffrprojectswidget)](https://cran.r-project.org/package=diffrprojectswidget)
+
+
+
+```{r, include=FALSE}
+filelist.R   <- list.files("R", recursive = TRUE, pattern="\\.R$", ignore.case = TRUE, full.names = TRUE)
+filelist.tests   <- list.files("tests", recursive = TRUE, pattern="\\.R$", ignore.case = TRUE, full.names = TRUE)
+filelist.cpp <- list.files("src", recursive = TRUE, pattern="\\.cpp$", ignore.case = TRUE, full.names = TRUE)
+lines.R      <- unlist(lapply(filelist.R, readLines))
+lines.tests  <- unlist(lapply(filelist.tests, readLines))
+lines.cpp    <- unlist(lapply(filelist.cpp, readLines))
+length.R     <- 
+  length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.R,  value = TRUE, invert = TRUE))
+length.tests <- 
+  length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.tests,  value = TRUE, invert = TRUE))
+length.cpp   <- 
+  length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = TRUE, invert = TRUE))
+```
+
+
+*unstable* - in wild developement with fuRiouS rEstRucturINg and biG biG pOKing
+
+
+
+*R code:* `r length.R`<br> 
+*C++ code:* `r length.cpp`<br> 
+*test code:* `r length.tests`
+
+
+
+**Version**
+
+```{r, results='asis', echo=FALSE}
+cat(tmp$Version)
+```
+
+
+**Description**
+
+```{r, results='asis', echo=FALSE}
+cat(tmp$Description)
+```
+
+
+**License**
+
+```{r, results='asis', echo=FALSE}
+cat(tmp$License, "<br>")
+cat(as.character(eval(parse(text=tmp$Author))))
+```
+
+
+
+
+**Citation**
+
+
+```{r, results='asis', echo=FALSE}
+citation("diffrprojectswidget")
+```
+
+**BibTex for citing**
+
+```{r, eval=FALSE}
+toBibtex(citation("diffrprojectswidget"))
+```
+
+
+
+**Installation**
+
+```{r, eval=FALSE}
+devtools::install_github("petermeissner/stringb")
+devtools::install_github("petermeissner/rtext")
+devtools::install_github("petermeissner/diffrprojects")
+devtools::install_github("petermeissner/diffrprojects")
+```
+
+... or, alternatively from my private R package repository ... 
+
+```{r, eval=FALSE}
+options( "repos" = 
+  c(
+    options("repos")$repos, 
+    petermeissner="https://petermeissner.github.io/drat"
+  ) 
+)
+install.packages("diffrprojectswidget")
+```
+
+
+
+    

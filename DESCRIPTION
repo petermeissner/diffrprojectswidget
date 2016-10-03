@@ -1,0 +1,43 @@
+Package: diffrprojectswidget
+Title: Visualization for 'diffrprojects'
+Date: 2016-10-03
+Version: 0.1.0.90000
+Authors@R: c(
+  person(
+    "Peter", "Meissner",
+    email = "retep.meissner@gmail.com",
+    role = c("aut", "cre")
+  ),
+  person(
+    "Ulrich", "Sieberer",
+    role = "cph",
+    email = "ulrich.sieberer@uni-bamberg.de",
+    comment = ""
+  ),
+  person(
+    "University of Konstanz",
+    role = "cph",
+    email = "willkommen@uni-konstanz.de",
+    comment = ""
+  )
+  )
+Description: State of the art htmlwidget / D3.js visualization for
+    'diffrprojects' projects.
+Depends:
+    R (>= 3.0.0),
+    stringb (>= 0.1.11),
+    rtext (>= 0.1.16)
+License: MIT + file LICENSE
+LazyData: TRUE
+Imports:
+    hellno (>= 0.0.1),
+    dplyr(>= 0.5.0),
+    magrittr,
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+BugReports: https://github.com/petermeissner/diffrprojectswidget/issues
+URL: https://github.com/petermeissner/diffrprojects
+RoxygenNote: 5.0.1.9000
+VignetteBuilder: knitr
