@@ -26,7 +26,7 @@ dp_vis <- function(links=list(source= 1:10, target=sin(1:10)), width = "100%", h
 
   # pass the data and settings using 'x'
   x <- list(
-    data = links,
+    links = links,
     options = options
   )
 
