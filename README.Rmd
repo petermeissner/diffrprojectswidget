@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: yes
 ---
 
 
@@ -40,7 +41,6 @@ length.cpp   <-
 ```
 
 
-*unstable* - in wild developement with fuRiouS rEstRucturINg and biG biG pOKing
 
 
 
@@ -110,6 +110,31 @@ options( "repos" =
 install.packages("diffrprojectswidget")
 ```
 
+
+
+**Example usage**
+
+
+```{r, message=FALSE}
+# loading packages
+library(diffrprojects)
+library(diffrprojectswidget)
+
+# setting up a project
+dp <- 
+  diffrproject$new()$
+    text_add(list("aaa\nbb\ncccc\ndd\nee\nff\ny\n", "bb\ncccd\ndd\nddd\nee\nff\n"))$
+    text_link()$
+    text_align( maxDist = 1 )$
+    alignment_code(1,1:24, "wuppah", 1)$
+    alignment_code(1,c(3,8,9,11), "womppah", 1)
+
+dp$text_code_regex(text=1, x="a", pattern="a", val=TRUE)
+dp$text_code_regex(text=2, x="b", pattern="[^a]", val=TRUE)
+
+# tabulating change
+dp_table(dp, link=1)
+```
 
 
     

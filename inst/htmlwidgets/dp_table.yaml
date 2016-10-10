@@ -1,0 +1,18 @@
+dependencies:
+  - name: jquery
+    version: 1.9.1
+    src: "htmlwidgets/lib/jquery-1.9.1"
+    script: jquery.min.js
+  - name: dp_style
+    version: 1.0.0
+    src: "htmlwidgets/lib/dp_style"
+    stylesheet: dp_table_style.css
+  - name: stickyTableHeaders
+    version: 0.1.19
+    src: "htmlwidgets/lib/stickyTableHeaders"
+    script: stickyTableHeaders.js
+
+
+
+
+

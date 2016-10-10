@@ -4,11 +4,10 @@
 \alias{dp_vis}
 \title{function for visualization}
 \usage{
-dp_vis(links = list(source = 1:10, target = sin(1:10)), width = "100\%",
-  height = "400px")
+dp_vis(dp, width = "100\%", height = "400px")
 }
 \arguments{
-\item{links}{some data tha currently is not passed on}
+\item{dp}{diffrprojects object}
 
 \item{width}{width of widget}
 

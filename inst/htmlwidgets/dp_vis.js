@@ -4,36 +4,32 @@ HTMLWidgets.widget({
 
   type: "output",
 
+  // initialization of drawing area
   initialize: function(el, width, height) {
 
-     d3.select(el).append("svg")
-      .attr("width", width)
-      .attr("height", height);
+   var svg = d3.select(el).append("svg")
+              .attr("width", width)
+              .attr("height", height);
 
-    return d3.layout.force();
+    return svg;
   },
 
+  // doing a resize
   resize: function(el, width, height, force) {
 
      d3.select(el).select("svg")
       .attr("width", width)
       .attr("height", height);
 
-     force.size([width, height]).resume();
   },
 
+
+  // doing duty to do
   renderValue: function(el, x, force) {
 
     // convert links data frame to d3 friendly format
-    var links = HTMLWidgets.dataframeToD3(x.links);
-
-    // compute the nodes from the links
-    var nodes = {};
-    links.forEach(function(link) {
-            link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
-            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
-      link.value = +link.value;
-    });
+    var alignment      = HTMLWidgets.dataframeToD3(x.alignment);
+    var alignment_data = HTMLWidgets.dataframeToD3(x.alignment_data);
 
     // get the width and height
     var width = el.offsetWidth;
@@ -41,12 +37,6 @@ HTMLWidgets.widget({
 
     // set this up even if zoom = F
     var zoom = d3.behavior.zoom();
-
-    // create d3 force layout
-    force
-      .nodes(d3.values(nodes))
-      .links(links)
-      .size([width, height]);
 
 
     // thanks http://plnkr.co/edit/cxLlvIlmo1Y6vJyPs6N9?p=preview
@@ -95,7 +85,7 @@ HTMLWidgets.widget({
 
     // draw nodes
     var node = svg.selectAll(".node")
-      .data(force.nodes())
+      .data(alignment.token_i_1)
       .enter().append("g")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)

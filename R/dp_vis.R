@@ -1,12 +1,12 @@
 #' function for visualization
 #'
-#' @param links some data tha currently is not passed on
+#' @param dp diffrprojects object
 #' @param width width of widget
 #' @param height heigth of widget
 #'
 #' @export
 #'
-dp_vis <- function(links=list(source= 1:10, target=sin(1:10)), width = "100%", height = "400px") {
+dp_vis <- function(dp, width = "100%", height = "400px") {
 
 
 
@@ -26,8 +26,11 @@ dp_vis <- function(links=list(source= 1:10, target=sin(1:10)), width = "100%", h
 
   # pass the data and settings using 'x'
   x <- list(
-    links = links,
-    options = options
+    alignment      = dp$alignment[[1]],
+    alignment_data = dp$alignment_data[[1]],
+    text1          = dp$text[[1]]$text_get(split = "\n"),
+    text2          = dp$text[[2]]$text_get(split = "\n"),
+    options        = options
   )
 
   # create the widget
