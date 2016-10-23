@@ -9,7 +9,7 @@
   border-top: 1px  solid #E0E0E0;
 }
 
-.dp_table tbody tr:nth-child(2n) {
+.dp_table tbody tr:nth-child(2n).no-change {
     background-color: #F7F7F7;
 }
 

@@ -60,12 +60,19 @@ HTMLWidgets.widget({
           "token_2"
       ];
 
-      table.append("<thead><tr class='firstline'><th>"+ table_head.join("</th><th>") + "</th></tr></thead>");
+      table
+        .append(
+          "<thead><tr class='firstline'><th>" +
+          table_head.join("</th><th>") +
+          "</th></tr></thead>"
+        )
+      ;
+
       for (i = 0; i < x.alignment.alignment_i.length; i++) {
         table.append( table_row(i) );
       }
 
-      // add
+      // add stickyness
       $(document).ready(function() { table.stickyTableHeaders(); });
     }
 });

@@ -7,7 +7,7 @@ dp <- diffrproject$new()
 dp$options$verbose <- FALSE
 
 dp$
-  text_add(list("aaa\nbb\ncccc\ndd\nee\nff\ny\n", "bb\ncccd\ndd\nddd\nee\nff\n"))$
+  text_add(list("aaa\nbb\ncccc\ndd\nee\nff\ny\naaa\n1\n2\n3", "bb\ncccd\ndd\nddd\nee\nff\n\naaa\n1\n2\n3"))$
   text_link()$
   text_align( maxDist = 1 )$
   alignment_code(1,1:24, "wuppah", 1)$
@@ -19,3 +19,7 @@ dp$text_code_regex(text=2, x="b", pattern="[^a]", val=TRUE)
 
 
 dp_table(dp, link=1)
+
+dp_vis(dp, link=1)
+
+

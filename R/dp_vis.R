@@ -6,30 +6,48 @@
 #'
 #' @export
 #'
-dp_vis <- function(dp, width = "100%", height = "400px") {
+dp_vis <- function(dp, link=NULL, width = "100%", height = "400px") {
 
+  # check input
+  if( is.null(link) ){
+    if( length( dp$link == 1 ) ){
+      link <- 1
+    }else{
+      stop("No link/alignment choosen, please specify link/alignment to render.")
+    }
+  }
+
+  # get link name and text names
+  if( is.numeric(link) ){
+    link  <- names(dp$link)[link]
+  }
+
+  text_name_1 <- dp$link[[link]]$from
+  text_name_2 <- dp$link[[link]]$to
 
 
   # create a list that contains the settings
-  options <- list(
-    linkDistance = 50,
-    charge = -200,
-    fontSize = 7,
-    fontFamily = "serif",
-    linkColour = "#666",
-    nodeColour = "#3182bd",
-    nodeClickColour = "#E34A33",
-    textColour = "#3182bd",
-    opacity = 0.6,
-    zoom = TRUE
-  )
+  options <- list( )
 
   # pass the data and settings using 'x'
+  a1 <-
+    dp$alignment[[link]] %>%
+    dplyr::select(token_i_1, from_1, to_1) %>%
+    setNames(c("ti", "from", "to"))
+  a1$textnr <- 1
+
+  a2 <-
+    dp$alignment[[link]] %>%
+    dplyr::select(token_i_2, from_2, to_2) %>%
+    setNames(c("ti", "from", "to"))
+  a2$textnr <- 2
+
   x <- list(
-    alignment      = dp$alignment[[1]],
-    alignment_data = dp$alignment_data[[1]],
-    text1          = dp$text[[1]]$text_get(split = "\n"),
-    text2          = dp$text[[2]]$text_get(split = "\n"),
+    alignment      = dp$alignment[[link]],
+    textbits       = rbind(a1, a2),
+    text1          = dp$text[[text_name_1]]$text_get(),
+    text2          = dp$text[[text_name_2]]$text_get(),
+    alignment_data = lapply(dp$alignment_data[[link]], function(x){names(x)[3]<- "value";x}),
     options        = options
   )
 
