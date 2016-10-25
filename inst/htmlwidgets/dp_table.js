@@ -25,16 +25,16 @@ HTMLWidgets.widget({
         var row_values =
         [
           "<pre>[" + x.alignment.alignment_i[i] + "]</pre>"  ,
-          "<i>" + x.alignment.type[i] + "</i>" ,
-          x.alignment.distance[i],
           "<i>" +
             x.text1.substring(
               x.alignment.from_1[i] === null ? null : (x.alignment.from_1[i] -1),
               x.alignment.to_1[i]   === null ? null : (x.alignment.to_1[i] + 1)
             ) +
           "</i>" ,
-          x.alignment.token_i_1[i],
-          x.alignment.token_i_2[i],
+          x.alignment.token_i_1[i] === null ? null : ("[" + x.alignment.token_i_1[i] + "]"),
+          "<i>" + x.alignment.type[i] + "</i>" ,
+          x.alignment.distance[i],
+          x.alignment.token_i_2[i] === null ? null : ("[" + x.alignment.token_i_2[i] + "]"),
           "<i>" +
             x.text2.substring(
               x.alignment.from_2[i] === null ? null : (x.alignment.from_2[i] - 1) ,
@@ -52,13 +52,17 @@ HTMLWidgets.widget({
       // fill table with values
       var table_head = [
           "#" ,
-          "type",
-          "distance",
           "token_1",
           "#1",
+          "type",
+          "distance",
           "#2",
           "token_2"
       ];
+
+      for (var i = 0; i < x.alignment_data_vars.length; i++) {
+        table_head.push(x.alignment_data_vars[i] + "_1");
+      }
 
       table
         .append(

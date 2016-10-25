@@ -1,12 +1,15 @@
 .dp_table table
 {
   border-collapse: collapse;
+  table-layout:fixed;
 }
 
 .dp_table table th, .dp_table table td
 {
   padding: 3px;
   border-top: 1px  solid #E0E0E0;
+  min-width: 15px;
+  max-width: 250px;
 }
 
 .dp_table tbody tr:nth-child(2n).no-change {

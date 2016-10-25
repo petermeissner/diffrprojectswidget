@@ -1,25 +1,30 @@
-#### ---------------------------------------------------------------------------
 
 library(diffrprojects)
 library(diffrprojectswidget)
 
-dp <- diffrproject$new()
-dp$options$verbose <- FALSE
-
-dp$
-  text_add(list("aaa\nbb\ncccc\ndd\nee\nff\ny\naaa\n1\n2\n3", "bb\ncccd\ndd\nddd\nee\nff\n\naaa\n1\n2\n3"))$
+dp <-
+  diffrproject$new()$
+  text_add(list(prometheus_late, prometheus_early))$
   text_link()$
-  text_align( maxDist = 1 )$
-  alignment_code(1,1:24, "wuppah", 1)$
-  alignment_code(1,c(3,8,9,11), "womppah", 1)
+  text_align( maxDist = 1 )
 
+dp$text_code_regex(text=1, x="you", pattern="du|Du", val=TRUE)
+dp$text_code_regex(text=1, x="me", pattern="ich|Ich", val=TRUE)
 
-dp$text_code_regex(text=1, x="a", pattern="a", val=TRUE)
-dp$text_code_regex(text=2, x="b", pattern="[^a]", val=TRUE)
+dp$text_code_regex(text=2, x="you", pattern="du|Du", val=TRUE)
+dp$text_code_regex(text=2, x="me", pattern="ich|Ich", val=TRUE)
+
+dp$alignment_code(1,1,"x", "muhaha")
+dp$alignment_code(1,1,"dings", "check this out")
+
+dp$debug()
+
+dp$tokenize_text_data_words()
+
 
 
 dp_table(dp, link=1)
 
-dp_vis(dp, link=1)
+#dp_vis(dp, link=1)
 
 

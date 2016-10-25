@@ -1,7 +1,18 @@
+if(getRversion() >= "2.15.1"){
+  utils::globalVariables(
+    c(
+      "token_i_1", "token_i_2",
+      "from", "to", "from_1", "to_1", "ti", "to_2", "from_2",
+      "alignment_i"
+    )
+  )
+}
+
 #' function for visualization
 #'
 #' @param dp diffrprojects object
 #' @param width width of widget
+#' @param link wich link / alignment to use; either specify by index or by name
 #' @param height heigth of widget
 #'
 #' @export
@@ -33,13 +44,15 @@ dp_vis <- function(dp, link=NULL, width = "100%", height = "400px") {
   a1 <-
     dp$alignment[[link]] %>%
     dplyr::select(token_i_1, from_1, to_1) %>%
-    setNames(c("ti", "from", "to"))
+    stats::setNames(c("ti", "from", "to")) %>%
+    dplyr::filter(!is.na(ti), !is.na(from), !is.na(to))
   a1$textnr <- 1
 
   a2 <-
     dp$alignment[[link]] %>%
     dplyr::select(token_i_2, from_2, to_2) %>%
-    setNames(c("ti", "from", "to"))
+    stats::setNames(c("ti", "from", "to")) %>%
+    dplyr::filter(!is.na(ti), !is.na(from), !is.na(to))
   a2$textnr <- 2
 
   x <- list(

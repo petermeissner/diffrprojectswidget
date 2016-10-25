@@ -42,6 +42,8 @@ HTMLWidgets.widget({
       return (d.ti);
     };
 
+    var color_scale = d3.scale.category20();
+
     // select the svg element and remove existing children
     var svg = d3.select(el).select("svg");
     svg.selectAll("*").remove();
@@ -55,7 +57,8 @@ HTMLWidgets.widget({
         .attr("y", ycompute)
         .attr("width", 10)
         .attr("height", 2)
-    ;
+        .style("fill", function(d, i){ return color_scale(i);})
+      ;
   }
 
 });

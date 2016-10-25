@@ -9,7 +9,7 @@ dependencies:
     stylesheet: dp_table_style.css
   - name: stickyTableHeaders
     version: 0.1.19
-    src: "htmlwidgets/lib/stickyTableHeaders"
+    src: "htmlwidgets/lib/stickyTableHeaders-0.1.19"
     script: stickyTableHeaders.js
 
 

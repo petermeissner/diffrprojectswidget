@@ -1,7 +1,7 @@
 Package: diffrprojectswidget
 Title: Visualization for 'diffrprojects'
-Date: 2016-10-03
-Version: 0.1.1.90000
+Date: 2016-10-25
+Version: 0.1.2.90000
 Authors@R: c(
   person(
     "Peter", "Meissner",
@@ -27,6 +27,7 @@ Depends:
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
+    diffrprojects (>= 0.1.10),
     hellno (>= 0.0.1),
     dplyr(>= 0.5.0),
     htmlwidgets (>= 0.7.0),

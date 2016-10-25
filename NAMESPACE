@@ -3,6 +3,7 @@
 export("%>%")
 export(dp_table)
 export(dp_tableOutput)
+export(dp_table_prepare_data)
 export(dp_vis)
 export(dp_visOutput)
 export(renderDP_vis)

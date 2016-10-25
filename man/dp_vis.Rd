@@ -9,6 +9,8 @@ dp_vis(dp, link = NULL, width = "100\%", height = "400px")
 \arguments{
 \item{dp}{diffrprojects object}
 
+\item{link}{wich link / alignment to use; either specify by index or by name}
+
 \item{width}{width of widget}
 
 \item{height}{heigth of widget}
