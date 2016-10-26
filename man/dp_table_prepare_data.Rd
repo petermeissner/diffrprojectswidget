@@ -4,7 +4,7 @@
 \alias{dp_table_prepare_data}
 \title{function for preparing data for tabulation}
 \usage{
-dp_table_prepare_data(dp, link = NULL, align_var = "", text_var = "",
+dp_table_prepare_data(dp, link = NULL, align_var = TRUE, text_var = TRUE,
   aggregate_function = NULL, ...)
 }
 \arguments{

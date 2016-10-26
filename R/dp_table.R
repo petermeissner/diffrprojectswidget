@@ -27,10 +27,10 @@ if(getRversion() >= "2.15.1"){
 #'
 dp_table <- function(
   dp,
-  link=NULL,
-  align_var="",
-  text_var="",
-  aggregate_function=NULL,
+  link               = NULL,
+  align_var          = TRUE,
+  text_var           = TRUE,
+  aggregate_function = NULL,
   ...,
   width = "100%",
   height = "400px"
@@ -40,10 +40,10 @@ dp_table <- function(
   x <-
     dp_table_prepare_data(
       dp,
-      link=NULL,
-      align_var="",
-      text_var="",
-      aggregate_function=NULL,
+      link               = NULL,
+      align_var          = align_var,
+      text_var           = text_var,
+      aggregate_function = NULL,
       ...
     )
 
@@ -78,10 +78,10 @@ dp_table <- function(
 dp_table_prepare_data <-
   function(
     dp,
-    link=NULL,
-    align_var="",
-    text_var="",
-    aggregate_function=NULL,
+    link               = NULL,
+    align_var          = TRUE,
+    text_var           = TRUE,
+    aggregate_function = NULL,
     ...
   ){
   # check input
@@ -108,13 +108,20 @@ dp_table_prepare_data <-
 
   # prepare alignment_data
   alignment_data <-
-    dp$alignment_data_full(1, TRUE) %>%
-    dplyr::select(alignment_i, var_name, var_value)
+    dp$alignment[[link]][, "alignment_i", drop=FALSE] %>%
+    dplyr::left_join(
+      tidyr::spread(
+        diffrprojects:::as.data.frame.alignment_data_list(
+          dp$alignment_data[link]
+        ),
+        name,
+        val
+      )
+    ) %>%
+    dplyr::select(-hl,-link, -alignment_i)
 
   if( align_var != TRUE ){
-    alignment_data <-
-      alignment_data %>%
-      dplyr::filter(var_name %in% align_var)
+    alignment_data <- alignment_data[, names(alignment_data) %in% align_var, drop = FALSE]
   }
 
   # preapare text_data
@@ -144,9 +151,9 @@ dp_table_prepare_data <-
     ) %>%
     dplyr::select(-from, -to, -token_i)
 
-  if( text_var!="" ){
-    text1_data <- text1_data[, text_var]
-    text2_data <- text2_data[, text_var]
+  if( text_var != TRUE ){
+    text1_data <- text1_data[, names(text1_data) %in% text_var]
+    text2_data <- text2_data[, names(text2_data) %in% text_var]
   }
 
   # return
@@ -156,11 +163,10 @@ dp_table_prepare_data <-
       text1                     = dp$text[[text_name_1]]$text_get(),
       text2                     = dp$text[[text_name_2]]$text_get(),
       alignment_data            = alignment_data,
-      alignment_data_vars       = unique(alignment_data$var_name),
+      alignment_data_vars       = names(alignment_data),
       alignment_text1_data      = text1_data,
       alignment_text2_data      = text2_data,
-      alignment_text1_data_vars = names(text1_data),
-      alignment_text2_data_vars = names(text2_data)
+      text_data_vars = names(text1_data)
     )
   )
 }

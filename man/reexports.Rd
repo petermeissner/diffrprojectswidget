@@ -4,7 +4,10 @@
 \name{reexports}
 \alias{\%>\%}
 \alias{reexports}
-\title{Objects exported from other packages}
+\title{pipe operator}
+\description{
+pipe operator
+}
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

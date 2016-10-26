@@ -4,7 +4,7 @@
 \alias{dp_table}
 \title{function for tabulation}
 \usage{
-dp_table(dp, link = NULL, align_var = "", text_var = "",
+dp_table(dp, link = NULL, align_var = TRUE, text_var = TRUE,
   aggregate_function = NULL, ..., width = "100\%", height = "400px")
 }
 \arguments{
