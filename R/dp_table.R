@@ -43,8 +43,7 @@ dp_table <- function(
       link               = NULL,
       align_var          = align_var,
       text_var           = text_var,
-      aggregate_function = NULL,
-      ...
+      aggregate_function = NULL
     )
 
   # create a list that contains the settings
@@ -116,11 +115,12 @@ dp_table_prepare_data <-
         ),
         name,
         val
-      )
+      ),
+      by = c("alignment_i"="alignment_i")
     ) %>%
     dplyr::select(-hl,-link, -alignment_i)
 
-  if( align_var != TRUE ){
+  if( any(align_var != TRUE) ){
     alignment_data <- alignment_data[, names(alignment_data) %in% align_var, drop = FALSE]
   }
 
@@ -151,9 +151,9 @@ dp_table_prepare_data <-
     ) %>%
     dplyr::select(-from, -to, -token_i)
 
-  if( text_var != TRUE ){
-    text1_data <- text1_data[, names(text1_data) %in% text_var]
-    text2_data <- text2_data[, names(text2_data) %in% text_var]
+  if( any(text_var != TRUE) ){
+    text1_data <- text1_data[, names(text1_data) %in% text_var, drop=FALSE]
+    text2_data <- text2_data[, names(text2_data) %in% text_var, drop=FALSE]
   }
 
   # return

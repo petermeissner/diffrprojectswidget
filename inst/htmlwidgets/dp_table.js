@@ -20,7 +20,7 @@ HTMLWidgets.widget({
   renderValue:
     function(el, x) {
 
-      // helper
+      // helper : change type printing
       var atype = function(x){
         if( x == "change"){
           return "chg";
@@ -34,6 +34,21 @@ HTMLWidgets.widget({
         return "";
       };
 
+      // helper : correct item number
+      var item_number = function(array_or_string){
+        if(       typeof(array_or_string) === "undefined" ){
+          return 0;
+        }else if( array_or_string === null ){
+          return 0;
+        } else if( typeof(array_or_string) === "string" ){
+          return 1;
+        }else{
+          return Object.keys(array_or_string).length || 0 ;
+        }
+        return 0;
+      };
+
+      // function making one table row
       var table_row = function(i){
         var row_values =
         [
@@ -55,20 +70,30 @@ HTMLWidgets.widget({
             ) +
           "</i>"
         ];
-        for (var k = 0; k < x.alignment_data_vars.length; k++) {
-          row_values.push(x.alignment_data[Object.keys(x.alignment_data)[k]][i]);
+        for (var j = 0; j < item_number(x.alignment_data_vars); j++) {
+          row_values.push(
+            x.alignment_data[ Object.keys(x.alignment_data )[j] ][i]
+          );
         }
-        for (var k = 0; k < x.text_data_vars.length; k++) {
-          row_values.push(x.alignment_text1_data[ x.text_data_vars[k] ][i]);
+        for (var k = 0; k < item_number(x.text_data_vars); k++) {
+          row_values.push(
+            typeof(x.text_data_vars)==="string" ?
+            x.alignment_text1_data[ x.text_data_vars ][i] :
+            x.alignment_text1_data[ x.text_data_vars[k] ][i]
+          );
         }
-        for (var k = 0; k < x.text_data_vars.length; k++) {
-          row_values.push(x.alignment_text2_data[ x.text_data_vars[k] ][i]);
+        for (var q = 0; q < item_number(x.text_data_vars); q++) {
+          row_values.push(
+            typeof(x.text_data_vars)==="string" ?
+            x.alignment_text2_data[ x.text_data_vars ][i] :
+            x.alignment_text2_data[ x.text_data_vars[q] ][i]
+          );
         }
 
         return "<tr class='" + x.alignment.type[i] + "' ><td>"+ row_values.join("</td><td>") + "</td></tr>" ;
       };
 
-      // gen table
+      // add table to element
       $(el).append("<table>");
       var table = $(el).find("table");
 
@@ -83,16 +108,25 @@ HTMLWidgets.widget({
           "token_2"
       ];
 
-      for (var i = 0; i < x.alignment_data_vars.length; i++) {
-        table_head.push(x.alignment_data_vars[i]);
+      for (var l = 0; l < item_number(x.alignment_data_vars); l++) {
+        table_head.push(
+          typeof(x.alignment_data_vars)==="string" ?
+          x.alignment_data_vars :
+          x.alignment_data_vars[l]
+        );
       }
 
-      for (var i = 0; i < x.text_data_vars.length; i++) {
-        table_head.push(x.text_data_vars[i] + "_1");
-      }
-
-      for (var i = 0; i < x.text_data_vars.length; i++) {
-        table_head.push(x.text_data_vars[i] + "_2");
+      for (var m = 0; m < item_number(x.text_data_vars); m++) {
+        table_head.push(
+          typeof(x.text_data_vars)==="string" ?
+          x.text_data_vars + "_1" :
+          x.text_data_vars[m] + "_1"
+        );
+        table_head.push(
+          typeof(x.text_data_vars)==="string" ?
+          x.text_data_vars + "_2" :
+          x.text_data_vars[m] + "_2"
+        );
       }
 
       table
@@ -103,9 +137,11 @@ HTMLWidgets.widget({
         )
       ;
 
-      for (i = 0; i < x.alignment.alignment_i.length; i++) {
-        table.append( table_row(i) );
+      for (o = 0; o < x.alignment.alignment_i.length; o++) {
+        table.append( table_row(o) );
       }
+
+      $(document).ready(function() { xdata = x; });
 
       // add stickyness
       $(document).ready(function() { table.stickyTableHeaders(); });

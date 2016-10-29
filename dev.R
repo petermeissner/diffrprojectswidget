@@ -23,8 +23,29 @@ dp$tokenize_text_data_words()
 
 # testing:
 
-dp_table(dp, link=1, TRUE, "you")
+dp_table(dp, link=1)
+dp_table(dp, link=1, FALSE, FALSE)
+dp_table(dp, link=1, TRUE, FALSE)
+dp_table(dp, link=1, FALSE, TRUE)
+dp_table(dp, link=1, FALSE)
 
-#dp_vis(dp, link=1)
+tf <- tempfile()
+dp_table(dp, link=1, TRUE) %>% htmlwidgets::saveWidget(tf)
+xml2::read_html(tf)
+
+
+
+dp_table(dp, link=1, "dings", FALSE)
+dp_table(dp, link=1, "dongs", FALSE)
+dp_table(dp, link=1, c("dongs","dings"), FALSE)
+dp_table(dp, link=1, c(""), FALSE)
+
+dp_table(dp, link=1, FALSE, "you")
+dp_table(dp, link=1, FALSE, "me")
+dp_table(dp, link=1, FALSE, c("you", "me"))
+
+dp_table(dp, link=1, , TRUE)
+
+dp_vis(dp, link=1)
 
 
