@@ -2,3 +2,14 @@
 .Rhistory
 .RData
 .Ruserdata
+alignment_vars.json
+alignment_text_data_vars.json
+alignment_text2_data.json
+alignment_text1_data.json
+alignment_data_vars.json
+alignment_data.json
+alignment.json
+test.json
+text1.json
+text2.json
+text_data_vars.json
