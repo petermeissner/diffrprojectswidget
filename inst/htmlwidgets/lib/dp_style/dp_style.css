@@ -73,3 +73,27 @@ color: #FFFFFF;
   margin: 2px ;
 }
 
+.dp_vis_tooltip {
+  background: #000000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 2px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 9pt;
+  white-space: pre-line;
+}
+
+/*
+.dp_vis_tooltip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+*/
+

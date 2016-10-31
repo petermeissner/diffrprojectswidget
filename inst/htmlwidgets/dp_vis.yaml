@@ -3,3 +3,11 @@ dependencies:
     version: 3.5.2
     src: "htmlwidgets/lib/d3-3.5.2"
     script: d3.min.js
+  - name: dp_style
+    version: 1.0.0
+    src: "htmlwidgets/lib/dp_style"
+    stylesheet: dp_style.css
+  - name: dp_tools
+    version: 1.0.0
+    src: "htmlwidgets/lib/dp_tools"
+    script: dp_tools.js

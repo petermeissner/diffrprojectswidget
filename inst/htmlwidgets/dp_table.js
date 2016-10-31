@@ -20,33 +20,7 @@ HTMLWidgets.widget({
   renderValue:
     function(el, x) {
 
-      // helper : change type printing
-      var atype = function(x){
-        if( x == "change"){
-          return "chg";
-        }else if(x == "no-change"){
-          return "==";
-        }else if(x == "deletion"){
-          return "del";
-        }else if(x == "insertion"){
-          return "ins";
-        }
-        return "";
-      };
 
-      // helper : correct item number
-      var item_number = function(array_or_string){
-        if(       typeof(array_or_string) === "undefined" ){
-          return 0;
-        }else if( array_or_string === null ){
-          return 0;
-        } else if( typeof(array_or_string) === "string" ){
-          return 1;
-        }else{
-          return Object.keys(array_or_string).length || 0 ;
-        }
-        return 0;
-      };
 
       // function making one table row
       var table_row = function(i){
@@ -75,18 +49,18 @@ HTMLWidgets.widget({
             x.alignment_data[ Object.keys(x.alignment_data )[j] ][i]
           );
         }
-        for (var k = 0; k < item_number(x.text_data_vars); k++) {
+        for (var k = 0; k < item_number(x.alignment_text_data_vars); k++) {
           row_values.push(
-            typeof(x.text_data_vars)==="string" ?
-            x.alignment_text1_data[ x.text_data_vars ][i] :
-            x.alignment_text1_data[ x.text_data_vars[k] ][i]
+            typeof(x.alignment_text_data_vars)==="string" ?
+            x.alignment_text1_data[ x.alignment_text_data_vars ][i] :
+            x.alignment_text1_data[ x.alignment_text_data_vars[k] ][i]
           );
         }
-        for (var q = 0; q < item_number(x.text_data_vars); q++) {
+        for (var q = 0; q < item_number(x.alignment_text_data_vars); q++) {
           row_values.push(
-            typeof(x.text_data_vars)==="string" ?
-            x.alignment_text2_data[ x.text_data_vars ][i] :
-            x.alignment_text2_data[ x.text_data_vars[q] ][i]
+            typeof(x.alignment_text_data_vars)==="string" ?
+            x.alignment_text2_data[ x.alignment_text_data_vars ][i] :
+            x.alignment_text2_data[ x.alignment_text_data_vars[q] ][i]
           );
         }
 
@@ -116,16 +90,16 @@ HTMLWidgets.widget({
         );
       }
 
-      for (var m = 0; m < item_number(x.text_data_vars); m++) {
+      for (var m = 0; m < item_number(x.alignment_text_data_vars); m++) {
         table_head.push(
-          typeof(x.text_data_vars)==="string" ?
-          x.text_data_vars + "_1" :
-          x.text_data_vars[m] + "_1"
+          typeof(x.alignment_text_data_vars)==="string" ?
+          x.alignment_text_data_vars + "_1" :
+          x.alignment_text_data_vars[m] + "_1"
         );
         table_head.push(
-          typeof(x.text_data_vars)==="string" ?
-          x.text_data_vars + "_2" :
-          x.text_data_vars[m] + "_2"
+          typeof(x.alignment_text_data_vars)==="string" ?
+          x.alignment_text_data_vars + "_2" :
+          x.alignment_text_data_vars[m] + "_2"
         );
       }
 

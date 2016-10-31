@@ -3,14 +3,18 @@ dependencies:
     version: 1.9.1
     src: "htmlwidgets/lib/jquery-1.9.1"
     script: jquery.min.js
-  - name: dp_style
-    version: 1.0.0
-    src: "htmlwidgets/lib/dp_style"
-    stylesheet: dp_table_style.css
   - name: stickyTableHeaders
     version: 0.1.19
     src: "htmlwidgets/lib/stickyTableHeaders-0.1.19"
     script: stickyTableHeaders.js
+  - name: dp_style
+    version: 1.0.0
+    src: "htmlwidgets/lib/dp_style"
+    stylesheet: dp_style.css
+  - name: dp_tools
+    version: 1.0.0
+    src: "htmlwidgets/lib/dp_tools"
+    script: dp_tools.js
 
 
 

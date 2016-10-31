@@ -19,11 +19,22 @@ dp$alignment_code(1,1,"dings", "check this out")
 
 dp$debug()
 
-tmp <- dp_prepare_data_vis(dp, minimize = TRUE)
-for( i in seq_along(tmp) ){
-  writeLines(tmp[[i]], paste0(names(tmp)[i], ".json") )
-}
+dp$tokenize_text_data_words()
 
-dp_vis(dp, link=1)
-#dp_table(dp, 1)
+# testing:
+
+dp_table(dp, link=1)
+dp_table(dp, link=1, FALSE, FALSE)
+dp_table(dp, link=1, TRUE, FALSE)
+dp_table(dp, link=1, FALSE, TRUE)
+dp_table(dp, link=1, FALSE)
+
+dp_table(dp, link=1, "dings", FALSE)
+dp_table(dp, link=1, "dongs", FALSE)
+dp_table(dp, link=1, c("dongs","dings"), FALSE)
+dp_table(dp, link=1, c(""), FALSE)
+
+dp_table(dp, link=1, FALSE, "you")
+dp_table(dp, link=1, FALSE, "me")
+dp_table(dp, link=1, FALSE, c("you", "me"))
 

@@ -4,12 +4,11 @@
 \alias{dp_vis}
 \title{function for visualization}
 \usage{
-dp_vis(dp, link = NULL, width = "100\%", height = "400px")
+dp_vis(dp, link = NULL, align_var = TRUE, text_var = TRUE,
+  aggregate_function = NULL, ..., width = "100\%", height = "400px")
 }
 \arguments{
 \item{dp}{diffrprojects object}
-
-\item{link}{wich link / alignment to use; either specify by index or by name}
 
 \item{width}{width of widget}
 

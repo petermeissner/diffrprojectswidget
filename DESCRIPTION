@@ -1,7 +1,7 @@
 Package: diffrprojectswidget
 Title: Visualization for 'diffrprojects'
-Date: 2016-10-25
-Version: 0.1.2.90000
+Date: 2016-11-01
+Version: 0.1.3.90000
 Authors@R: c(
   person(
     "Peter", "Meissner",
@@ -31,7 +31,8 @@ Imports:
     hellno (>= 0.0.1),
     dplyr(>= 0.5.0),
     htmlwidgets (>= 0.7.0),
-    magrittr,
+    jsonlite (>= 1.1),
+    magrittr
 Suggests:
     testthat,
     knitr,
