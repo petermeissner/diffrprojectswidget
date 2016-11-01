@@ -20,6 +20,8 @@ dp_prepare_data_vis(dp, link = NULL, align_var = TRUE, text_var = TRUE,
 specific variable for a token of text severla values exist, if NULL it
 defaults to modus() but could also be e.g. paste or something alike}
 
+\item{minimize}{make data small and comlicated}
+
 \item{...}{further arguments passed through to aggregate_function}
 }
 \description{

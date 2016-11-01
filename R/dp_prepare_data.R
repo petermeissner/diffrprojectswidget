@@ -1,3 +1,11 @@
+if(getRversion() >= "2.15.1"){
+  utils::globalVariables(
+    c(
+      "name", "val", "hl"
+    )
+  )
+}
+
 #' function for preparing data for tabulation
 #'
 #' @param dp an object of type diffrproject
@@ -119,6 +127,7 @@ dp_prepare_data_table <-
 #'    specific variable for a token of text severla values exist, if NULL it
 #'    defaults to modus() but could also be e.g. paste or something alike
 #' @param ... further arguments passed through to aggregate_function
+#' @param minimize make data small and comlicated
 #'
 #' @export
 #'
@@ -254,9 +263,9 @@ dp_prepare_data_vis <-
         text_vars                 = jsonify(names(text1)),
         alignment_data            = jsonify(alignment_data),
         alignment_data_vars       = jsonify(names(alignment_data)),
-        alignment_text1_data      = jsonify(text1_data),
-        alignment_text2_data      = jsonify(text2_data),
-        alignment_text_data_vars  = jsonify(names(text1_data))
+        text1_data                = jsonify(text1_data),
+        text2_data                = jsonify(text2_data),
+        text_data_vars            = jsonify(names(text1_data))
       )
     )
   }

@@ -79,6 +79,19 @@ HTMLWidgets.widget({
       info_text += "from: " + d[1] + ", ";
       info_text += "to: "   + d[2] + "\n\n";
       info_text += d[3];
+
+      if( d[4] === 1 ){
+        var text_data = x.text1_data;
+      }else if( d[4] === 2 ){
+        var text_data = x.text2_data;
+      }else{
+        var text_data = null;
+      }
+
+      for (var k = 0; k < item_number(x.text_data_vars); k++) {
+        info_text += "\n" + x.text_data_vars[k] + ": " + text_data[i][k];
+      }
+
       return info_text ;
     }
 

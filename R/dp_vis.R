@@ -1,8 +1,15 @@
 #' function for visualization
 #'
-#' @param dp diffrprojects object
+#' @param dp an object of type diffrproject
+#' @param link which link to produce vis for
 #' @param width width of widget
 #' @param height heigth of widget
+#' @param align_var either a character vector of variable names or TRUE for all
+#' @param text_var either a character vector of variable names or TRUE for all
+#' @param aggregate_function a function able to resolve conflicts if for a
+#'    specific variable for a token of text severla values exist, if NULL it
+#'    defaults to modus() but could also be e.g. paste or something alike
+#' @param ... further arguments passed through to aggregate_function
 #'
 #' @export
 #'

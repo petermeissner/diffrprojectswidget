@@ -8,7 +8,19 @@ dp_vis(dp, link = NULL, align_var = TRUE, text_var = TRUE,
   aggregate_function = NULL, ..., width = "100\%", height = "400px")
 }
 \arguments{
-\item{dp}{diffrprojects object}
+\item{dp}{an object of type diffrproject}
+
+\item{link}{which link to produce vis for}
+
+\item{align_var}{either a character vector of variable names or TRUE for all}
+
+\item{text_var}{either a character vector of variable names or TRUE for all}
+
+\item{aggregate_function}{a function able to resolve conflicts if for a
+specific variable for a token of text severla values exist, if NULL it
+defaults to modus() but could also be e.g. paste or something alike}
+
+\item{...}{further arguments passed through to aggregate_function}
 
 \item{width}{width of widget}
 

@@ -19,11 +19,6 @@ dp$alignment_code(1,1,"dings", "check this out")
 
 dp$debug()
 
-tmp <- dp_prepare_data_vis(dp, minimize = TRUE)
-for( i in seq_along(tmp) ){
-  writeLines(tmp[[i]], paste0(names(tmp)[i], ".json") )
-}
-
 dp_vis(dp, link=1)
-#dp_table(dp, 1)
+dp_table(dp, 1)
 
