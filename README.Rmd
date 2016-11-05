@@ -16,6 +16,7 @@ cat("#", tmp$Title)
 ```
 
 
+<br><br>
 **Status**
 
 
@@ -49,14 +50,14 @@ length.cpp   <-
 *test code:* `r length.tests`
 
 
-
+<br><br>
 **Version**
 
 ```{r, results='asis', echo=FALSE}
 cat(tmp$Version)
 ```
 
-
+<br><br>
 **Description**
 
 ```{r, results='asis', echo=FALSE}
@@ -64,6 +65,13 @@ cat(tmp$Description)
 ```
 
 
+<br><br>
+**Funding**
+
+This software was created as part of the "Institutional Design in Western European Democracies" research project, funded by [DFG (Deutsche Forschungsgemeinschaft)](http://gepris.dfg.de/gepris/projekt/146229116), lead by [Ulrich Sieberer](https://scholar.google.com/citations?user=Q_ImhbkAAAAJ) and based at [University Konstanz](https://www.uni-konstanz.de/). 
+
+
+<br><br>
 **License**
 
 ```{r, results='asis', echo=FALSE}
@@ -73,7 +81,7 @@ cat(as.character(eval(parse(text=tmp$Author))))
 
 
 
-
+<br><br>
 **Citation**
 
 
@@ -81,6 +89,8 @@ cat(as.character(eval(parse(text=tmp$Author))))
 citation("diffrprojectswidget")
 ```
 
+
+<br><br>
 **BibTex for citing**
 
 ```{r, eval=FALSE}
@@ -88,7 +98,7 @@ toBibtex(citation("diffrprojectswidget"))
 ```
 
 
-
+<br><br>
 **Installation**
 
 ```{r, eval=FALSE}
@@ -111,7 +121,7 @@ install.packages("diffrprojectswidget")
 ```
 
 
-
+<br><br>
 **Example usage**
 
 
