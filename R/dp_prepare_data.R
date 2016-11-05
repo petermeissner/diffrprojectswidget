@@ -51,19 +51,21 @@ dp_prepare_data_table <-
       diffrprojects::sort_alignment(ti1 = "token_i_1", ti2 = "token_i_2")
 
     # prepare alignment_data
-    alignment_data <-
-      dp$alignment[[link]][, "alignment_i", drop=FALSE] %>%
-      dplyr::left_join(
-        tidyr::spread(
-          diffrprojects:::as.data.frame.alignment_data_list(
+    ad <- diffrprojects:::as.data.frame.alignment_data_list(
             dp$alignment_data[link]
-          ),
-          name,
-          val
-        ),
-        by = c("alignment_i"="alignment_i")
-      ) %>%
-      dplyr::select(-hl,-link, -alignment_i)
+          )
+
+    alignment_data <-
+      if( nrow(ad)==0 ){
+        dplyr::select( data.frame( a = rep(NA, nrow(alignment))), -a)
+      }else{
+        dp$alignment[[link]][, "alignment_i", drop=FALSE] %>%
+        dplyr::left_join(
+          tidyr::spread( ad, name, val ),
+          by = c("alignment_i"="alignment_i")
+        ) %>%
+        dplyr::select(-hl,-link, -alignment_i)
+      }
 
     if( any(align_var != TRUE) ){
       alignment_data <- alignment_data[, names(alignment_data) %in% align_var, drop = FALSE]
@@ -164,19 +166,21 @@ dp_prepare_data_vis <-
       diffrprojects::sort_alignment(ti1 = "token_i_1", ti2 = "token_i_2")
 
     # prepare alignment_data
-    alignment_data <-
-      dp$alignment[[link]][, "alignment_i", drop=FALSE] %>%
-      dplyr::left_join(
-        tidyr::spread(
-          diffrprojects:::as.data.frame.alignment_data_list(
+    ad <- diffrprojects:::as.data.frame.alignment_data_list(
             dp$alignment_data[link]
-          ),
-          name,
-          val
-        ),
-        by = c("alignment_i"="alignment_i")
-      ) %>%
-      dplyr::select(-hl,-link, -alignment_i)
+          )
+
+    alignment_data <-
+      if( nrow(ad)==0 ){
+        dplyr::select( data.frame( a = rep(NA, nrow(alignment))), -a)
+      }else{
+        dp$alignment[[link]][, "alignment_i", drop=FALSE] %>%
+        dplyr::left_join(
+          tidyr::spread( ad, name, val ),
+          by = c("alignment_i"="alignment_i")
+        ) %>%
+        dplyr::select(-hl,-link, -alignment_i)
+      }
 
     if( any(align_var != TRUE) ){
       alignment_data <- alignment_data[, names(alignment_data) %in% align_var, drop = FALSE]
@@ -247,7 +251,7 @@ dp_prepare_data_vis <-
         function(x){
           htmlwidgets::JS(
             jsonlite::toJSON(
-              x, "values", pretty = TRUE, na="null"
+              x, "values", na="null"
             )
           )
         }
