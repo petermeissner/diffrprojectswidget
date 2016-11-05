@@ -146,10 +146,16 @@ dp$alignment_code(1,1,"dongs", "muhaha")
 dp$alignment_code(1,1,"dings", "check this out")
 
 dp$debug()
-
-dp_vis(dp, link=1)
-dp_table(dp, 1)
 ```
 
+```{r, screenshot.force = TRUE}
+dpv <- dp_vis(dp, 1, align_var = TRUE, text_var = TRUE)
+dpv
+```
+
+```{r, screenshot.force = TRUE}
+dpt <- dp_table(dp, 1, align_var = TRUE, text_var = TRUE)
+dpt
+```
 
     
