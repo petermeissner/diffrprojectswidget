@@ -138,7 +138,6 @@ install.packages("diffrprojectswidget")
 
 ```{r, message=FALSE}
 
-library(diffrprojects)
 library(diffrprojectswidget)
 
 dp <-

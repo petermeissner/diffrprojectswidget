@@ -1,7 +1,7 @@
 if(getRversion() >= "2.15.1"){
   utils::globalVariables(
     c(
-      "name", "val", "hl"
+      "name", "val", "hl", "a"
     )
   )
 }
@@ -18,6 +18,27 @@ if(getRversion() >= "2.15.1"){
 #' @param ... further arguments passed through to aggregate_function
 #'
 #' @export
+#'
+#' @examples
+#'
+#' library(diffrprojects)
+#' library(diffrprojectswidget)
+#'
+#' dp <-
+#' diffrproject$new()$
+#'   text_add(list(text_version_1, text_version_2))$
+#'   text_link()$
+#'   text_align( maxDist = 1 )
+#'
+#' dp$text_code_regex(
+#'   text    = 1,
+#'   x       = "change",
+#'   pattern = "change",
+#'   val     = "change"
+#' )
+#'
+#' dp_prepare_data_table(dp)
+#'
 #'
 dp_prepare_data_table <-
   function(

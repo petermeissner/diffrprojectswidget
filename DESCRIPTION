@@ -26,7 +26,7 @@ Description: Interactive visualizations and tabulations for diffrprojects.
     interactivity via HTML and Javascript, Rstudio viewer integration, 
     RMarkdown integration, as well as Shiny compatibility. 
 Depends:
-    R (>= 3.0.0),
+    R (>= 3.0.0)
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:

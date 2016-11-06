@@ -25,6 +25,7 @@ if(getRversion() >= "2.15.1"){
 #'
 #' @export
 #'
+#'
 dp_table <- function(
   dp,
   link               = NULL,

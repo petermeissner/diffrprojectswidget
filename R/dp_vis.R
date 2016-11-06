@@ -13,6 +13,7 @@
 #'
 #' @export
 #'
+#'
 dp_vis <- function(
   dp,
   link      = NULL,
