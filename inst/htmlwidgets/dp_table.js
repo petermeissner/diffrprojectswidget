@@ -26,7 +26,7 @@ HTMLWidgets.widget({
       var table_row = function(i){
         var row_values =
         [
-          "<pre>[" + x.alignment.alignment_i[i] + "]</pre>"  ,
+          "[" + x.alignment.alignment_i[i] + "]"  ,
           "<i>" +
             x.text1.substring(
               x.alignment.from_1[i] === null ? null : (x.alignment.from_1[i] -1),
@@ -96,6 +96,9 @@ HTMLWidgets.widget({
           x.alignment_text_data_vars + "_1" :
           x.alignment_text_data_vars[m] + "_1"
         );
+      }
+
+      for (var m = 0; m < item_number(x.alignment_text_data_vars); m++) {
         table_head.push(
           typeof(x.alignment_text_data_vars)==="string" ?
           x.alignment_text_data_vars + "_2" :
@@ -119,6 +122,10 @@ HTMLWidgets.widget({
 
       // add stickyness
       $(document).ready(function() { table.stickyTableHeaders(); });
+
+      // update height of encapsualting div
+      $(el).height( table.height()+10 );
+
     }
 });
 

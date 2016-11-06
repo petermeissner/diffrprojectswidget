@@ -6,7 +6,7 @@ Visualization for 'diffrprojects'
 
 [![Travis-CI Build Status](https://travis-ci.org/petermeissner/diffrprojectswidget.svg?branch=master)](https://travis-ci.org/petermeissner/diffrprojectswidget) [![codecov](https://codecov.io/gh/petermeissner/diffrprojectswidget/branch/master/graph/badge.svg)](https://codecov.io/gh/petermeissner/diffrprojectswidget/tree/master/R) [![CRAN version](http://www.r-pkg.org/badges/version/diffrprojectswidget)](https://cran.r-project.org/package=diffrprojectswidget)
 
-*R code:* 277<br> *C++ code:* 0<br> *test code:* 0
+*R code:* 310<br> *C++ code:* 0<br> *test code:* 0
 
 <br><br> **Version**
 
@@ -14,7 +14,7 @@ Visualization for 'diffrprojects'
 
 <br><br> **Description**
 
-'Htmlwidget' / D3.js visualization for 'diffrprojects' projects.
+Interactive visualizations and tabulations for diffrprojects. All presentations are based on the htmlwidgets framework allowing for interactivity via HTML and Javascript, Rstudio viewer integration, RMarkdown integration, as well as Shiny compatibility.
 
 <br><br> **Funding**
 
@@ -46,7 +46,7 @@ toBibtex(citation("diffrprojectswidget"))
 devtools::install_github("petermeissner/stringb")
 devtools::install_github("petermeissner/rtext")
 devtools::install_github("petermeissner/diffrprojects")
-devtools::install_github("petermeissner/diffrprojects")
+devtools::install_github("petermeissner/diffrprojectswidget")
 ```
 
 ... or, alternatively from my private R package repository ...
@@ -69,20 +69,37 @@ library(diffrprojectswidget)
 
 dp <-
   diffrproject$new()$
-  text_add(list(prometheus_late, prometheus_early))$
+  text_add(list(text_version_1, text_version_2))$
   text_link()$
   text_align( maxDist = 1 )
 
-dp$text_code_regex(text=1, x="you", pattern="du|Du", val=TRUE)
-dp$text_code_regex(text=1, x="me", pattern="ich|Ich", val=TRUE)
+dp$text_code_regex(
+  text    = 1, 
+  x       = "change",    
+  pattern = "change", 
+  val     = "change"
+)
+dp$text_code_regex(
+  text    = 1, 
+  x       = "change",    
+  pattern = "add", 
+  val     = "add"
+)
+dp$text_code_regex(
+  text    = 1, 
+  x       = "change",    
+  pattern = "modif", 
+  val     = "modif"
+)
+dp$text_code_regex(
+  text    = 1, 
+  x       = "change",    
+  pattern = "delete", 
+  val     = "delete"
+)
+dp$text_code_regex(text=1, x="stability", pattern="same", val=TRUE)
 
-dp$text_code_regex(text=2, x="you", pattern="du|Du", val=TRUE)
-dp$text_code_regex(text=2, x="me", pattern="ich|Ich", val=TRUE)
-
-dp$alignment_code(1,1,"dongs", "muhaha")
-dp$alignment_code(1,1,"dings", "check this out")
-
-dp$debug()
+dp$alignment_code(1, sample(1:6)*2,"alignment_code", TRUE)
 ```
 
 ``` r

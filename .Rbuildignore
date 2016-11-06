@@ -3,4 +3,8 @@
 .travis.yml
 README.Rmd
 dev.R
+README_files
+README_files/*
+README.pdf
+
 

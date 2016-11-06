@@ -73,34 +73,33 @@ HTMLWidgets.widget({
 
 
     // tooltip - function
-    function tooltip_info(d, i){
+    function tooltip_info_text(d, i){
       var info_text  = "" ;
-      info_text += "token_i: "  + d[0] + ", ";
-      info_text += "from: " + d[1] + ", ";
-      info_text += "to: "   + d[2] + "\n\n";
+      info_text += "["  + d[0] + ": " + d[1] + " - " + d[2] + "]\n\n";
       info_text += d[3];
 
-      if( d[4] === 1 ){
-        var text_data = x.text1_data;
-      }else if( d[4] === 2 ){
-        var text_data = x.text2_data;
-      }else{
-        var text_data = null;
+      if( item_number(x.text_data_vars) > 0 ){
+        info_text += "\n\n";
+        for (var k = 0; k < item_number(x.text_data_vars) ; k++) {
+          info_text += x.text_data_vars[k] + ": " + d[k+5] + "\n";
+        }
       }
-
-      for (var k = 0; k < item_number(x.text_data_vars); k++) {
-        info_text += "\n" + x.text_data_vars[k] + ": " + text_data[i][k];
-      }
-
       return info_text ;
     }
 
-    function tooltip_info2(d, i){
+    function tooltip_info_alignment(d, i){
       var info_text  = "" ;
-      info_text += d[0] + " - ";
-      info_text += d[3];
-      info_text += " / "  + d[2] + " - ";
-      info_text += d[1];
+      info_text += "[" + d[0] + "] --> ";
+      info_text += "[" + d[1] + "]\n\n";
+      info_text += "type: " + d[3] + "\n";
+      info_text += "distance: " + d[2];
+
+      if( item_number(x.alignment_data_vars) > 0 ){
+        info_text += "\n\n";
+        for (var k = 0; k < item_number(x.alignment_data_vars) ; k++) {
+          info_text += x.alignment_data_vars[k] + ": " + d[k+4] + "\n";
+        }
+      }
       return info_text ;
     }
 
@@ -125,22 +124,30 @@ HTMLWidgets.widget({
         .attr("height", height_scale(0.8) )
         .style("fill",
           function(d, i){
-            return color_scale(d[0]);
+            var tmp = "";
+            if( item_number(x.text_data_vars) > 0 ){
+              for (var k = 0; k < item_number(x.text_data_vars) ; k++) {
+                tmp += x.text_data_vars[k] + "_" + d[k+5];
+              }
+            }else{
+              tmp = i % 2;
+            }
+            return color_scale(tmp);
           }
         )
-        .on("mouseover", function(d){
+        .on("mouseover", function(d,i){
           tooltip
-          .text(tooltip_info(d))
+          .text(tooltip_info_text(d,i))
           .style("visibility", "visible")
           ;
         })
-        .on("mousemove", function(d){
+        .on("mousemove", function(d,i){
             return tooltip
             .style("top", (event.pageY-20)+"px")
             .style("left",(event.pageX+10)+"px")
             ;
         })
-        .on("mouseout", function(){
+        .on("mouseout", function(d,i){
           return tooltip.style("visibility", "hidden");
         })
     ;
@@ -223,7 +230,7 @@ HTMLWidgets.widget({
         })
         .style("stroke-width",
           height_scale(
-             (Math.max(total_height, (2 * tmp_lines)) / tmp_lines) * 0.1
+             (Math.max(total_height, (2 * tmp_lines)) / tmp_lines) * 0.03
             ) - 5
         )
         .style("stroke-opacity", 0.5)
@@ -240,11 +247,11 @@ HTMLWidgets.widget({
               .attr("save", 1) ;
           }
            return (tooltip
-          .text(tooltip_info2(d))
+          .text(tooltip_info_alignment(d,i))
           .style("visibility", "visible"))
           ;
         })
-        .on("mousemove", function(d){
+        .on("mousemove", function(d,i){
             return tooltip
             .style("top", (event.pageY-20)+"px")
             .style("left",(event.pageX+10)+"px")

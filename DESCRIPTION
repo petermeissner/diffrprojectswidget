@@ -1,7 +1,7 @@
 Package: diffrprojectswidget
 Title: Visualization for 'diffrprojects'
-Date: 2016-11-01
-Version: 0.1.4.90000
+Date: 2016-11-06
+Version: 0.1.5
 Authors@R: c(
   person(
     "Peter", "Meissner",
@@ -21,7 +21,10 @@ Authors@R: c(
     comment = ""
   )
   )
-Description: 'Htmlwidget' / D3.js visualization for 'diffrprojects' projects.
+Description: Interactive visualizations and tabulations for diffrprojects. 
+    All presentations are based on the htmlwidgets framework allowing for 
+    interactivity via HTML and Javascript, Rstudio viewer integration, 
+    RMarkdown integration, as well as Shiny compatibility. 
 Depends:
     R (>= 3.0.0),
 License: MIT + file LICENSE
@@ -40,5 +43,4 @@ Suggests:
     rmarkdown
 BugReports: https://github.com/petermeissner/diffrprojectswidget/issues
 URL: https://github.com/petermeissner/diffrprojects
-RoxygenNote: 5.0.1.9000
-VignetteBuilder: knitr
+RoxygenNote: 5.0.1

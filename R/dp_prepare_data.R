@@ -103,6 +103,22 @@ dp_prepare_data_table <-
       text2_data <- text2_data[, names(text2_data) %in% text_var, drop=FALSE]
     }
 
+    text1_data$t <- 1
+    text2_data$t <- 2
+
+    text_data <- rbind_fill(text1_data, text2_data)
+
+    text1_data <-
+      text_data %>%
+      dplyr::filter(t==1) %>%
+      dplyr::select(-t)
+
+    text2_data <-
+      text_data %>%
+      dplyr::filter(t==2) %>%
+      dplyr::select(-t)
+
+
     # return
     return(
       list(
@@ -210,7 +226,6 @@ dp_prepare_data_vis <-
     text1$text <- mapply(f, from=text1$from, to=text1$to)
     text1$tnr  <- 1
 
-
     # preapare text2_data
     text2 <-
       alignment %>%
@@ -236,10 +251,18 @@ dp_prepare_data_vis <-
     text2$tnr  <- 2
 
 
+    # subset text data according to variables selected
     if( any(text_var != TRUE) ){
       text1_data <- text1_data[, names(text1_data) %in% text_var, drop=FALSE]
       text2_data <- text2_data[, names(text2_data) %in% text_var, drop=FALSE]
     }
+
+    # add text data to text data.frame
+    text_vars      <- names(text1)
+    text_data_vars <- names(text1_data)
+    text1 <- cbind(text1, text1_data)
+    text2 <- cbind(text2, text2_data)
+    text  <- rbind_fill(text1, text2)
 
     # drop unwanted variables from alignment
      alignment <-
@@ -256,20 +279,16 @@ dp_prepare_data_vis <-
           )
         }
 
-
-
     # return
     return(
       list(
         alignment                 = jsonify(alignment),
-        alignment_vars            = jsonify(names(alignment)),
-        text                      = jsonify(rbind(text1, text2)),
-        text_vars                 = jsonify(names(text1)),
         alignment_data            = jsonify(alignment_data),
+        alignment_vars            = jsonify(names(alignment)),
         alignment_data_vars       = jsonify(names(alignment_data)),
-        text1_data                = jsonify(text1_data),
-        text2_data                = jsonify(text2_data),
-        text_data_vars            = jsonify(names(text1_data))
+        text                      = jsonify(text),
+        text_vars                 = jsonify(text_vars),
+        text_data_vars            = jsonify(text_data_vars)
       )
     )
   }
